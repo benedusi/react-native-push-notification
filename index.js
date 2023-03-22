@@ -240,6 +240,7 @@ Notifications._onNotification = function(data, isFromBackground = null) {
 					/* void */
 				}
 			}
+			notificationData.notification=notificationData.data//here
 
 			this.onNotification(notificationData);
 		}
