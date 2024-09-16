@@ -71,7 +71,7 @@ public class RNPushNotificationHelper {
         notificationIntent.putExtra(RNPushNotificationPublisher.NOTIFICATION_ID, notificationID);
         notificationIntent.putExtras(bundle);
 
-        return PendingIntent.getBroadcast(context, notificationID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, notificationID, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
     }
 
     public void sendNotificationScheduled(Bundle bundle) {
@@ -281,7 +281,7 @@ public class RNPushNotificationHelper {
             int notificationID = Integer.parseInt(notificationIdString);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, notificationID, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             NotificationManager notificationManager = notificationManager();
             checkOrCreateChannel(notificationManager);
@@ -322,7 +322,7 @@ public class RNPushNotificationHelper {
                     bundle.putString("action", action);
                     actionIntent.putExtra("notification", bundle);
                     PendingIntent pendingActionIntent = PendingIntent.getBroadcast(context, notificationID, actionIntent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_IMMUTABLE);
                     notification.addAction(icon, action, pendingActionIntent);
                 }
             }
